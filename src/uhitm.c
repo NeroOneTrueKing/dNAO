@@ -1177,6 +1177,16 @@ int thrown;
 				else silvermsg = TRUE;
 				silverobj = TRUE;
 		    }
+			if (obj->obj_material == IRON && hates_iron(mdat)) {
+				tmp += rnd(mon->m_lev * 2);	//I think this is the right thing to do here.  I don't think it enters the main iron section
+				ironmsg = TRUE;
+				ironobj = TRUE;
+			}
+			if (obj->cursed == TRUE && hates_unholy(mdat)) {
+				tmp += rnd(20);	//I think this is the right thing to do here.  I don't think it enters the main unholy section
+				unholymsg = TRUE;
+				unholyobj = TRUE;
+			}
 		    if (!thrown && obj == uwep && obj->otyp == BOOMERANG &&
 			    rnl(4) == 4-1 && obj->oartifact == 0) {
 			boolean more_than_1 = (obj->quan > 1L);
@@ -1431,6 +1441,14 @@ int thrown;
 				else silvermsg = TRUE;
 				silverobj = TRUE;
 		    }
+			if (obj->obj_material == IRON && hates_iron(mdat)) {
+				ironmsg = TRUE;
+				ironobj = TRUE;
+			}
+			if (obj->cursed == TRUE && hates_unholy(mdat)) {
+				unholymsg = TRUE;
+				unholyobj = TRUE;
+			}
 #ifdef STEED
 		    if (u.usteed && !thrown && tmp > 0 &&
 			    (weapon_type(obj) == P_LANCE ||
@@ -1716,6 +1734,16 @@ defaultvalue:
 						if(obj->oartifact == ART_SUNSWORD) sunmsg = TRUE;
 						else silvermsg = TRUE;
 						silverobj = TRUE;
+					}
+					if (obj && obj->obj_material == IRON && hates_iron(mdat)) {
+						tmp += rnd(mon->m_lev * 2);
+						ironmsg = TRUE;
+						ironobj = TRUE;
+					}
+					if (obj && obj->cursed == TRUE && hates_unholy(mdat)) {
+						tmp += rnd(20);
+						unholymsg = TRUE;
+						unholyobj = TRUE;
 					}
 				}
 			}
