@@ -920,7 +920,7 @@ int spec;
 			if((weaponmask & ~(resistmask)) == 0L){
 				tmp /= 4;
 				if(!flags.mon_moving && !youdefend && (warnedotyp != otmp->otyp || warnedptr != ptr)){
-					pline("%s is ineffective against %s", The(xname(otmp)), mon_nam(mon));
+					pline("%s is ineffective against %s.", The(xname(otmp)), mon_nam(mon));
 					warnedotyp = otmp->otyp;
 					warnedptr = ptr;
 				}
