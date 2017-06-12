@@ -1435,6 +1435,14 @@ int thrown;
 				else silvermsg = TRUE;
 				silverobj = TRUE;
 		    }
+			if (obj->obj_material == IRON && hates_iron(mdat)) {
+				ironmsg = TRUE;
+				ironobj = TRUE;
+			}
+			if (obj->cursed == TRUE && hates_unholy(mdat)) {
+				unholymsg = TRUE;
+				unholyobj = TRUE;
+			}
 #ifdef STEED
 		    if (u.usteed && !thrown && tmp > 0 &&
 			    (weapon_type(obj) == P_LANCE ||
@@ -1729,6 +1737,16 @@ defaultvalue:
 						unholymsg = TRUE;
 						unholyobj = TRUE;
 					}
+					}
+					if (obj && obj->obj_material == IRON && hates_iron(mdat)) {
+						tmp += rnd(mon->m_lev * 2);
+						ironmsg = TRUE;
+						ironobj = TRUE;
+					}
+					if (obj && obj->cursed == TRUE && hates_unholy(mdat)) {
+						tmp += rnd(20);
+						unholymsg = TRUE;
+						unholyobj = TRUE;
 					}
 				}
 			}
